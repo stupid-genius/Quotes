@@ -1,0 +1,11 @@
+{
+  "name": "quotes",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.4"
+  },
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "mocha": "~3.2.0"
+  }
+}
