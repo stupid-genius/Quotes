@@ -1,24 +1,12 @@
 body {
-  background: #fafafa;
+  background: #123456;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333;
+  color: #987654;
+  margin: 0;
 }
-
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-}
-
-.hero-unit h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
+li {
+    cursor: pointer;
+    margin: .5em;
 }
 
 .browsehappy {
@@ -26,4 +14,52 @@ body {
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
+}
+
+.vcenter{
+    position: absolute;
+    display: table;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+.vcenter > div{
+    display: table-cell;
+	vertical-align: middle;
+}
+.vcenter > div > div{
+    margin: 0 auto;
+}
+
+#book{
+    position: relative;
+    width: 800px;
+    height: 599px;
+    background-image: url('../images/book.png');
+}
+#leftPage{
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    width: 350px;
+    height: 535px;
+    /*border: 1px solid red;*/
+}
+#rightPage{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    width: 350px;
+    height: 535px;
+    /*border: 1px solid green;*/
+}
+#leftPage > div, #rightPage > div{
+    height: 500px;
+    padding: 1em;
+}
+#leftPage > div{
+    overflow-y: scroll;
+}
+#quotesList{
+    list-style-type: none;
 }

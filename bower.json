@@ -2,10 +2,15 @@
   "name": "quotes",
   "private": true,
   "dependencies": {
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "angular": "#1.4.7",
+    "angular-route": "~1.6.1"
   },
   "devDependencies": {
     "chai": "~3.5.0",
     "mocha": "~3.2.0"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
   }
 }
