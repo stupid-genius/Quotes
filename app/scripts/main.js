@@ -9,10 +9,7 @@ allow selection from url
  ? change UI to be single
 add MD service to allow MD in quotes
 */
-var quotesApp = angular.module('quotesApp', ['ngRoute']);
-
-quotesApp.config(['$routeProvider', function($routeProvider){
-}]);
+var quotesApp = angular.module('quotesApp', []);
 
 quotesApp.factory('quotesFactory', ['$q', '$http', function($q, $http){
 	var getQuotes = $q.defer();
@@ -54,11 +51,11 @@ quotesApp.factory('quotesFactory', ['$q', '$http', function($q, $http){
 
 quotesApp.controller('quotesController', ['$scope', 'quotesFactory', function($scope, getQuotes){
 	getQuotes.then(function(quotesFactory){
-		console.log(quotesFactory);
 		$scope.quotes = quotesFactory.all();
 		$scope.selectQuote = function(id){
 			var quote = quotesFactory.get(id);
 			$scope.quote = quote.quote;
+			$scope.name = quote.name;
 		};
 	});
 }]);

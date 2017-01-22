@@ -1,12 +1,13 @@
 body {
   background: #123456;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #987654;
+  font-family: 'Courgette', cursive;
+  /*text-shadow: 4px 4px 3px rgba(0,0,0,0.1);*/
   margin: 0;
 }
 li {
     cursor: pointer;
-    margin: .5em;
+    font-size: 1.25em;
+    margin: .5em 0;
 }
 
 .browsehappy {
@@ -43,15 +44,14 @@ li {
     left: 40px;
     width: 350px;
     height: 535px;
-    /*border: 1px solid red;*/
 }
 #rightPage{
     position: absolute;
+    display: table;
     top: 20px;
     right: 40px;
     width: 350px;
     height: 535px;
-    /*border: 1px solid green;*/
 }
 #leftPage > div, #rightPage > div{
     height: 500px;
@@ -60,6 +60,17 @@ li {
 #leftPage > div{
     overflow-y: scroll;
 }
+#rightPage > div{
+    display: table-cell;
+	vertical-align: middle;
+}
 #quotesList{
     list-style-type: none;
+}
+#quote{
+    text-align: justify;
+    line-height: 1.5em;
+}
+#name{
+    text-align: right;
 }
