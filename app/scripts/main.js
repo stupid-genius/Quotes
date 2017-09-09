@@ -54,7 +54,7 @@ quotesApp.controller('quotesController', ['$scope', 'quotesFactory', function($s
 		$scope.quotes = quotesFactory.all();
 		$scope.selectQuote = function(id){
 			var quote = quotesFactory.get(id);
-			$scope.quote = quote.quote;
+			$scope.quote = quote.quote.replace(/\n/g, '<br />');
 			$scope.name = quote.name;
 		};
 	});
