@@ -49,12 +49,12 @@ quotesApp.factory('quotesFactory', ['$q', '$http', function($q, $http){
 	});
 }]);
 
-quotesApp.controller('quotesController', ['$scope', 'quotesFactory', function($scope, getQuotes){
+quotesApp.controller('quotesController', ['$scope', '$sce', 'quotesFactory', function($scope, $sce, getQuotes){
 	getQuotes.then(function(quotesFactory){
 		$scope.quotes = quotesFactory.all();
 		$scope.selectQuote = function(id){
 			var quote = quotesFactory.get(id);
-			$scope.quote = quote.quote.replace(/\n/g, '<br />');
+			$scope.quote = $sce.trustAsHtml(quote.quote.replace(/\n/g, '<br />'));
 			$scope.name = quote.name;
 		};
 	});

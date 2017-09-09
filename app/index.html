@@ -35,7 +35,7 @@
             </div>
             <div id="rightPage">
                 <div id="quote" ng-show="quote">
-                    “{{quote}}”
+                    “<span ng-bind-html="quote"></span>”
                     <div id="name" ng-show="name">―{{name}}</div>
                 </div>
             </div>
