@@ -1,4 +1,7 @@
+*.swp
+.tmp
+.idea
 node_modules
 dist
-.tmp
-bower_components
+package
+*.log.gz

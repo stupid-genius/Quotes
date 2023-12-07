@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>QuoteNg</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="stylesheet" href="styles/main.css">
+	</head>
+	<body ng-app="quotesApp">
+		<div class="vcenter"><div>
+			<div id="book" ng-controller="quotesController">
+				<div id="leftPage">
+					<div>
+						<ul id="quotesList">
+							<li ng-repeat="quote in quotes" ng-click="selectQuote($index)">{{quote.name}}</li>
+						</ul>
+					</div>
+				</div>
+				<div id="rightPage">
+					<div id="quote" ng-show="quote">
+						“<span ng-bind-html="quote"></span>”
+						<div id="name" ng-show="name">―{{name}}</div>
+					</div>
+				</div>
+			</div>
+		</div></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+		<script type="module" src="scripts/index.js"></script>
+	</body>
+</html>
