@@ -1,5 +1,4 @@
-// jshint devel:true
-'use strict';
+// import * as angular from 'angular';
 
 /* TODO
 change text size of quote to fit to div
@@ -9,27 +8,27 @@ allow selection from url
  ? change UI to be single
 add MD service to allow MD in quotes
 */
-var quotesApp = angular.module('quotesApp', []);
+const quotesApp = angular.module('quotesApp', []);
 
 quotesApp.factory('quotesFactory', ['$q', '$http', function($q, $http){
-	var getQuotes = $q.defer();
-	$http.get('scripts/quotes.json')
-	.success(function(list){
-		var quotes = list.sort().map(function(e){
-			var pair = e.split(/::/);
-			return {
-				name: pair[0],
-				quote: pair[1]
-			};
+	const getQuotes = $q.defer();
+	$http.get('quotes.json')
+		.success(function(list){
+			const quotes = list.sort().map(function(e){
+				const pair = e.split(/::/);
+				return {
+					name: pair[0],
+					quote: pair[1]
+				};
+			});
+			getQuotes.resolve(quotes);
+		})
+		.error(function(e){
+			console.error(e);
 		});
-		getQuotes.resolve(quotes);
-	})
-	.error(function(e){
-		console.error(e);
-	});
 
 	return getQuotes.promise.then(function(quotes){
-		var quotesFactory = {};
+		const quotesFactory = {};
 		quotesFactory.get = function(index){
 			return quotes[index];
 		};
@@ -53,7 +52,7 @@ quotesApp.controller('quotesController', ['$scope', '$sce', 'quotesFactory', fun
 	getQuotes.then(function(quotesFactory){
 		$scope.quotes = quotesFactory.all();
 		$scope.selectQuote = function(id){
-			var quote = quotesFactory.get(id);
+			const quote = quotesFactory.get(id);
 			$scope.quote = $sce.trustAsHtml(quote.quote.replace(/\n/g, '<br />'));
 			$scope.name = quote.name;
 		};
