@@ -6,7 +6,7 @@ body {
   /*text-shadow: 4px 4px 3px rgba(0,0,0,0.1);*/
   margin: 0;
 }
-li {
+quote-list::part(quote) {
     cursor: pointer;
     font-size: 1.25em;
     margin: .5em 0;
@@ -66,13 +66,13 @@ li {
     display: table-cell;
 	vertical-align: middle;
 }
-#quotesList{
+quote-list::part(quotesList){
     list-style-type: none;
 }
 #quote{
     text-align: justify;
     line-height: 1.5em;
 }
-#name{
+#nameTag{
     text-align: right;
 }
