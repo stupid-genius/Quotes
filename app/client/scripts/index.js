@@ -1,60 +1,35 @@
-// import * as angular from 'angular';
+import './QuoteList';
 
 /* TODO
 change text size of quote to fit to div
 add random mode
 ? allow filtering
-allow selection from url
- ? change UI to be single
+? change UI to be single
 add MD service to allow MD in quotes
 */
-const quotesApp = angular.module('quotesApp', []);
 
-quotesApp.factory('quotesFactory', ['$q', '$http', function($q, $http){
-	const getQuotes = $q.defer();
-	$http.get('quotes.json')
-		.success(function(list){
-			const quotes = list.sort().map(function(e){
-				const pair = e.split(/::/);
-				return {
-					name: pair[0],
-					quote: pair[1]
-				};
-			});
-			getQuotes.resolve(quotes);
-		})
-		.error(function(e){
-			console.error(e);
+customElements.whenDefined('quote-list').then(async () => {
+	const quotesList = document.querySelector('quote-list');
+
+	if(quotesList.isConnected){
+		const response = await fetch('quotes.json');
+
+		if(!response.ok){
+			throw new Error(`Failed to fetch quotes: ${response.statusText}`);
+		}
+
+		// this has side effects
+		quotesList.items = (await response.json()).sort().map((e) => {
+			const quote = e.split(/::/);
+			quotesList.quotes[quote[0]]=quote;
+			return quote[0];
 		});
+		quotesList.connectedCallback();
 
-	return getQuotes.promise.then(function(quotes){
-		const quotesFactory = {};
-		quotesFactory.get = function(index){
-			return quotes[index];
-		};
-		quotesFactory.start = function(){
-
-		};
-		quotesFactory.next = function(){
-
-		};
-		quotesFactory.prev = function(){
-
-		};
-		quotesFactory.all = function(){
-			return quotes;
-		};
-		return quotesFactory;
-	});
-}]);
-
-quotesApp.controller('quotesController', ['$scope', '$sce', 'quotesFactory', function($scope, $sce, getQuotes){
-	getQuotes.then(function(quotesFactory){
-		$scope.quotes = quotesFactory.all();
-		$scope.selectQuote = function(id){
-			const quote = quotesFactory.get(id);
-			$scope.quote = $sce.trustAsHtml(quote.quote.replace(/\n/g, '<br />'));
-			$scope.name = quote.name;
-		};
-	});
-}]);
+		const searchParams = new URLSearchParams(window.location.search);
+		const query = searchParams.get('id') || searchParams.get('name');
+		if(query){
+			quotesList.selectQuote(query);
+		}
+	}
+});

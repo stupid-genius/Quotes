@@ -35,7 +35,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: refactor
+          ref: master
       - name: Configure Git
         run: |
           git config user.name "Allen"

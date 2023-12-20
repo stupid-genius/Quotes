@@ -3,30 +3,24 @@
 	<head>
 		<meta charset="utf-8">
 		<title>QuoteNg</title>
-		<meta name="description" content="">
+		<meta name="description" content="A minimalist UI showcasing a collection of quotes I enjoy">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="stylesheet" href="styles/main.css">
+		<script type="module" src="scripts/index.js"></script>
 	</head>
-	<body ng-app="quotesApp">
+	<body>
 		<div class="vcenter"><div>
-			<div id="book" ng-controller="quotesController">
+			<div id="book">
 				<div id="leftPage">
 					<div>
-						<ul id="quotesList">
-							<li ng-repeat="quote in quotes" ng-click="selectQuote($index)">{{quote.name}}</li>
-						</ul>
+						<quote-list fragment="<li>{{item}}</li>" />
 					</div>
 				</div>
 				<div id="rightPage">
-					<div id="quote" ng-show="quote">
-						“<span ng-bind-html="quote"></span>”
-						<div id="name" ng-show="name">―{{name}}</div>
-					</div>
+					<div />
 				</div>
 			</div>
 		</div></div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-		<script type="module" src="scripts/index.js"></script>
 	</body>
 </html>

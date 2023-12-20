@@ -9,7 +9,7 @@ module.exports = function(config) {
 		},
 		browsers: ['ChromeHeadless', 'FirefoxHeadless'],
 		reporters: ['mocha'],
-		logLevel: config.LOG_DEBUG,
+		// logLevel: config.LOG_DEBUG,
 		colors: true,
 		files: [
 			'dist/client/**/*.js',
