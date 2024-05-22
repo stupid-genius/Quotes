@@ -60,9 +60,10 @@ class QuoteListComponent extends ListComponent{
 
 	constructor(){
 		super();
-		const rightPage = document.querySelector('#rightPage > div');
-		rightPage.innerHTML = '';
-		rightPage.appendChild(this.quote);
+		const targetSelector = this.getAttribute('quote');
+        const targetElement = document.querySelector(targetSelector);
+		targetElement.innerHTML = '';
+		targetElement.appendChild(this.quote);
 	}
 
 	connectedCallback(){

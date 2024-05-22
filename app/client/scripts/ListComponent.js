@@ -1,4 +1,4 @@
-export class ListComponent extends HTMLElement {
+export class ListComponent extends HTMLElement{
 	constructor(){
 		super();
 		this.attachShadow({ mode: 'open' });
@@ -9,11 +9,11 @@ export class ListComponent extends HTMLElement {
 	}
 
 	static get observedAttributes(){
-		return ['items', 'fragment'];
+		return ['items'];
 	}
 
 	attributeChangedCallback(name, oldValue, newValue){
-		if((name === 'items' || name === 'fragment') && oldValue !== newValue){
+		if((name === 'items') && oldValue !== newValue){
 			this.renderList();
 		}
 	}
@@ -26,14 +26,11 @@ export class ListComponent extends HTMLElement {
 		this.setAttribute('items', JSON.stringify(value));
 	}
 
-	get fragment(){
-		return this.getAttribute('fragment') || '';
-	}
-
 	renderList(){
+		const fragment = [].filter.call(this.childNodes, node => node.nodeType === 1)[0].outerHTML;
 		const template = document.createElement('template');
 		this.items.forEach(item => {
-			const processedFragment = this.fragment.replace(/\{\{item\}\}/g, item);
+			const processedFragment = fragment.replace(/\{\{item\}\}/g, item);
 			template.innerHTML += processedFragment;
 		});
 
