@@ -20,12 +20,12 @@ class QuoteComponent extends HTMLElement{
 		this.quote = newVal;
 	}
 
-    render(){
-        this.innerHTML = `
-            “<span id="quote">${this.quote.replace(/\n/g,'<br />')}</span>”
-            <div id="nameTag">―<span id="name">${this.name}</span></div>
-        `;
-    }
+	render(){
+		this.innerHTML = `
+			“<span id="quote">${this.quote.replace(/\n/g,'<br />')}</span>”
+			<div id="nameTag">―<span id="name">${this.name}</span></div>
+		`;
+	}
 }
 
 function Quotes(){
@@ -61,7 +61,7 @@ class QuoteListComponent extends ListComponent{
 	constructor(){
 		super();
 		const targetSelector = this.getAttribute('quote');
-        const targetElement = document.querySelector(targetSelector);
+		const targetElement = document.querySelector(targetSelector);
 		targetElement.innerHTML = '';
 		targetElement.appendChild(this.quote);
 	}
